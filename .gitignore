@@ -1,0 +1,25 @@
+.next
+node_modules
+.data
+*.log
+.env.local
+.env*.local
+tsconfig.tsbuildinfo
+.DS_Store
+
+# Never commit private resume data or generated artifacts.
+*.pdf
+*.docx
+*.doc
+*.rtf
+*.txt
+!requirements.txt
+*.csv
+*.xlsx
+*.xls
+*.sqlite
+*.sqlite3
+*.db
+resumes/
+uploads/
+storage/

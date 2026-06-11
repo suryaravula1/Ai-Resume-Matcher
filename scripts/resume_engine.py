@@ -365,7 +365,7 @@ CATEGORIES = (
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Resume Matcher indexing and ATS-style scoring engine")
+    parser = argparse.ArgumentParser(description="AI Resume Matcher indexing and ATS-style scoring engine")
     parser.add_argument("--db", required=True, help="Path to the SQLite database")
     subparsers = parser.add_subparsers(dest="command", required=True)
 

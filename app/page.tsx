@@ -156,8 +156,8 @@ export default function Home() {
     <main className="shell">
       <section className="hero">
         <div>
-          <p className="eyebrow">Local ATS-style resume intelligence</p>
-          <h1>Paste a job description. Find the best resume in seconds.</h1>
+          <p className="eyebrow">AI-assisted ATS resume intelligence</p>
+          <h1>AI Resume Matcher for every job description.</h1>
           <p className="heroCopy">
             The app indexes your PDFs into SQLite once, skips unchanged files, then ranks stored resumes
             against a JD with transparent category scores and missing keywords.

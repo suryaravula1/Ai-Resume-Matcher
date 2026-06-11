@@ -1,4 +1,4 @@
-# Resume Matcher Next
+# AI Resume Matcher
 
 A local Next.js application for ranking resume PDFs against a pasted job description.
 
@@ -21,7 +21,7 @@ A local Next.js application for ranking resume PDFs against a pasted job descrip
 ## Run locally
 
 ```bash
-cd resume-matcher-next
+cd ai-resume-matcher
 npm install
 python3 -m pip install -r requirements.txt
 npm run dev

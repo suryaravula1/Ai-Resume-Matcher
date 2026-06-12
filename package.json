@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "GITHUB_PAGES=true next build",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "next": "latest",
+    "pdfjs-dist": "^6.0.227",
     "react": "latest",
     "react-dom": "latest"
   },

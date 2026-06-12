@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "AI Resume Matcher",
-  description: "Index resume PDFs once, paste a job description, and find the strongest AI-assisted ATS-style match."
+  description: "Upload resume PDFs locally, paste a job description, and get a private AI-assisted ATS-style match."
 };
 
 export default function RootLayout({

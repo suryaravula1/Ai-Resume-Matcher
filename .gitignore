@@ -1,4 +1,5 @@
 .next
+out
 node_modules
 .data
 *.log
@@ -13,7 +14,6 @@ tsconfig.tsbuildinfo
 *.doc
 *.rtf
 *.txt
-!requirements.txt
 *.csv
 *.xlsx
 *.xls

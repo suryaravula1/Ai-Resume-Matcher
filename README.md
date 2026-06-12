@@ -1,84 +1,82 @@
 # AI Resume Matcher
 
-A local Next.js application for ranking resume PDFs against a pasted job description.
+A privacy-first static web app that compares uploaded resume PDFs against a pasted job description and returns an ATS-style match score.
 
-## What it does
+## Why This Version Is Safe For GitHub Pages
 
-- Scans a resume folder once and stores extracted PDF text in SQLite.
-- Skips unchanged PDFs on future index runs using file size and modified time.
-- Marks removed PDFs inactive instead of deleting historical rows.
-- Scores all indexed resumes against a pasted JD without re-reading PDFs.
-- Shows the best resume, estimated ATS-style percentage, matched keywords, missing keywords, and category scores.
+This app runs fully in the browser:
 
-## Stack
+- No backend server
+- No database
+- No Python runtime
+- No resume files uploaded to GitHub
+- No resumes stored after the browser session ends
 
-- Frontend: Next.js App Router
-- API: Next.js route handlers
-- Engine: Python script called from the API
-- PDF parsing: `pypdf`
-- Database: SQLite with an optional FTS5 table
+Users select PDF resumes from their computer, paste a job description, and the matching logic runs locally on their device.
 
-## Run locally
+## Features
+
+- Parse multiple PDF resumes in the browser with `pdfjs-dist`
+- Score resumes against a pasted job description
+- Show best match percentage
+- Show matched keywords and missing keywords
+- Show category-level ATS-style scoring
+- Deploy as a static site to GitHub Pages
+
+## Tech Stack
+
+- Next.js App Router
+- React
+- TypeScript
+- PDF.js via `pdfjs-dist`
+- GitHub Pages static export
+
+## Run Locally
 
 ```bash
-cd ai-resume-matcher
 npm install
-python3 -m pip install -r requirements.txt
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-Set your private resume folder with an environment variable or paste it into the UI:
+## Build Static Site
 
 ```bash
-RESUME_MATCHER_FOLDER="/path/to/resumes" npm run dev
+npm run build:pages
 ```
 
-If you prefer a virtual environment:
+The static export is generated in:
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-npm run dev
+```text
+out/
 ```
 
-## Workflow
+## Deploy To GitHub Pages
 
-1. Click `Index / refresh PDFs`.
-2. Paste a job description.
-3. Keep the target ATS score at `94` or adjust it.
-4. Click `Find best resume`.
-5. If the best score meets the target, use that file. If not, tailor a new resume from the closest match.
+The repo includes a GitHub Actions workflow:
 
-## How scoring works
-
-The score is an estimate, not a guarantee from any specific ATS vendor. It combines:
-
-- Core software engineering overlap
-- Languages and frameworks
-- Azure/cloud and DevOps
-- Domain terms like actuarial, insurance, risk, modeling, pricing, and reporting
-- Agile, unit testing, TDD/BDD
-- Requirements, delivery, communication, and customer focus
-- Education fit
-- Dynamic keyword overlap from the pasted JD
-
-## Engine commands
-
-Index a folder:
-
-```bash
-python3 scripts/resume_engine.py --db .data/resume_matcher.sqlite3 index --folder /path/to/resumes
+```text
+.github/workflows/pages.yml
 ```
 
-Read status:
+After pushing to `main`, enable GitHub Pages:
 
-```bash
-python3 scripts/resume_engine.py --db .data/resume_matcher.sqlite3 status
+1. Open the repository on GitHub.
+2. Go to `Settings` → `Pages`.
+3. Under `Build and deployment`, choose `GitHub Actions`.
+4. Re-run the `Deploy GitHub Pages` workflow if needed.
+
+The app will deploy under:
+
+```text
+https://suryaravula1.github.io/Ai-Resume-Matcher/
 ```
 
-## Privacy
+## Important Note
 
-The repository intentionally ignores generated databases, PDFs, Word documents, spreadsheets, text exports, and local resume folders. Keep resume data outside the repo and point the app to that folder at runtime.
+The score is an ATS-style estimate, not a guarantee from any specific ATS vendor. The current version uses transparent keyword, phrase, category, and lexical overlap scoring. A future version can add semantic embeddings or AI-based JD parsing.
+
+## Privacy Guardrails
+
+The repository ignores private documents, resume data, generated databases, and build artifacts. Keep real resumes outside the repository.
